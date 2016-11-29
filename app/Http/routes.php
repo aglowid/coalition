@@ -19,3 +19,16 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+Route::group(["middleware" => ["web"]], function()
+{
+    Route::get("/products", "ProductsController@index");
+    Route::get("/products/create", "ProductsController@create");
+    Route::post("/products/store", "ProductsController@store");
+    Route::get("/products/{id}/edit", "ProductsController@edit");
+    Route::post("/products/update", "ProductsController@update");
+    Route::get("/products/{id}/active", "ProductsController@active");
+    Route::get("/products/{id}/deactive", "ProductsController@deactive");
+    Route::post("/products/delete", "ProductsController@destroy");
+});
